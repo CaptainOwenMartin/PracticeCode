@@ -1,46 +1,54 @@
-float locx, locy;
-float velx, vely;
-float accx, accy;
+PVector loc;
+PVector acc;
+PVector vel;
+
+//float locx, locy;
+//float velx, vely;
+//float accx, accy;
 
 int dia = 50;
 
 void setup() {
   size(800, 800);
-  locx = width/2;
-  locy = height/2;
-
-  accx = random(-.2, .2);
-  accy = random(-.2, .2);
-
-
-  velx = random(-.2, .2);
-  vely = random(-.2, .2);
+  loc = new PVector(width/2, height/2);
+  //  locx = width/2;
+  //  locy = height/2;
+  acc = new PVector(random(-.2, .2), random(-.2, .2));
+  //  accx = random(-.2, .2);
+  //  accy = random(-.2, .2);
+  vel = new PVector(0, 0);
+  //  velx = random(-.2, .2);
+  //  vely = random(-.2, .2);
 }
 
 void draw() {
-  accx = random(-.2, .2);
-  accy = random(-.2, .2); 
-  velx += accx;
-  vely += accy;
-  locx += velx;
-  locy += vely;
+  acc.set(random(-.2, .2), random(-.2, .2));
+  //  accx = random(-.2, .2);
+  //  accy = random(-.2, .2); 
+  vel.add(acc);
+  vel.limit(5);
+  //  velx += accx;
+  //  vely += accy;
+  loc.add(vel);
+  //  locx += velx;
+  //  locy += vely;
 
-  ellipse(locx, locy, dia, dia);
+  ellipse(loc.x, loc.y, dia, dia);
 
-  if (locx - dia/2>width) {
-    locx = -dia/2;
+  if (loc.x - dia/2>width) {
+    loc.x = -dia/2;
   }
 
-  if (locx + dia/2<0) {
-    locx = width + dia/2;
+  if (loc.x + dia/2<0) {
+    loc.x = width + dia/2;
   }
 
-  if (locy - dia/2>height) {
-    locy = -dia/2;
+  if (loc.y - dia/2>height) {
+    loc.y = -dia/2;
   }
 
-  if (locy + dia/2<0) {
-    locy = height + dia/2;
+  if (loc.y + dia/2<0) {
+    loc.y = height + dia/2;
   }
 }
 
