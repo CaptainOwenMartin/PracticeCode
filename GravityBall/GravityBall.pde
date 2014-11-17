@@ -6,16 +6,17 @@ void setup() {
   x = width/2;
   y = height*.1;
   velocityX = 0;
-  velocityY = 1;
+  velocityY = 0;
   gravity = 1;
   
 }
 void draw() {
-  background(0);
+  background(0,255,255);
   ellipse(x, y, dia, dia);
+    velocityY += gravity;
   x+=velocityX;
   y+=velocityY;
-  velocityY += gravity;
+
 
 if (y+dia/2>height) {
   velocityY = -abs(velocityY);
